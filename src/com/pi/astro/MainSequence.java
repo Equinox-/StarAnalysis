@@ -49,7 +49,7 @@ public class MainSequence {
 		double total = 0;
 		double weight = 0;
 		for (double[] d : data) {
-			double j = Math.pow(Math.abs(temp - d[1]), -10.0);
+			double j = Math.pow(Math.abs(temp - d[1]), -20.0);
 			total += j * d[0];
 			weight += j;
 		}

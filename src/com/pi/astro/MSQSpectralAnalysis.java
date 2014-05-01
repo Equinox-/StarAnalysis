@@ -12,6 +12,7 @@ public class MSQSpectralAnalysis {
 		PlanckMatchResults results = BlackBody.matchCurve(data, 100);
 		double luminosity = MainSequence
 				.msqTempToLuminosity(results.temperature);
+		System.out.println("Temperature: " + results.temperature);
 		System.out.println("Lambda Max (Observed): "
 				+ BlackBody.lambdaMax(data) + " m");
 		System.out.println("Lambda Max (Computed): "
@@ -27,6 +28,8 @@ public class MSQSpectralAnalysis {
 				+ (computeDistance / 9460730472580800.0) + " ly)");
 		double solarRadius = Math.sqrt(luminosity / totalFlux / Math.PI / 4.0);
 		System.out.println("Solar radius: " + solarRadius + " m");
+		System.out.println("Spectral type: "
+				+ StellarClassification.classify(results.temperature));
 
 		Object[] lines = EmissionLine.matchEmissionLines(results.curveVariance)
 				.toArray();

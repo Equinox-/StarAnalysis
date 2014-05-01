@@ -135,9 +135,14 @@ public class BlackBody {
 		double temp = 6000;
 		double[] res = { 0, 1 };
 		double[][] variance = new double[data.length][2];
+		double resLast = -1;
 		for (int step = 0; step < steps; step++) {
 			res = BlackBody.evalCurve(data, temp, variance);
+			if (resLast > 0) {
+				// Maybe some adaptive thing
+			}
 			temp += (res[0] * 1E8);
+			resLast = res[0];
 		}
 		PlanckMatchResults results = new PlanckMatchResults();
 		results.curveVariance = variance;
