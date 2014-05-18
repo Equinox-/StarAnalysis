@@ -21,7 +21,8 @@ public class MSQSpectralAnalysis {
 		double totalFlux = BlackBody.totalFlux(results.temperature);
 		double observedFlux = totalFlux * results.scalingFactor;
 		System.out.println("Total flux: " + totalFlux + " W/m^2");
-		System.out.println("Observed flux: " + observedFlux + " W/m^2");
+		System.out.println("Observed flux (Calculated): " + observedFlux + " W/m^2");
+		System.out.println("Observed flux (Raw): " + BlackBody.totalFlux(data) + " W/m^2");
 		double computeDistance = Math.sqrt(luminosity / observedFlux / Math.PI
 				/ 4.0);
 		System.out.println("Computed distance: " + computeDistance + " m ("

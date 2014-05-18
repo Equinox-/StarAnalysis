@@ -160,11 +160,30 @@ public class BlackBody {
 	 * This is the Stefann-Boltzmann Law.
 	 * 
 	 * @param temp
-	 *            temperature in Kelvin
+	 *            the data set. Each element is {wavelength in meters, spectral flux in
+	 *            W/m^2/m}
 	 * @return total flux in W/m^2
 	 */
 	public static double totalFlux(double temp) {
 		return 5.67037321E-8 * Math.pow(temp, 4);
+	}
+
+	/**
+	 * Computes the surface flux of a black body with the given spectral data.
+	 * 
+	 * This uses a Riemann Sum
+	 * 
+	 * @param data
+	 *            temperature in Kelvin
+	 * @return total flux in W/m^2
+	 */
+	public static double totalFlux(double[][] data) {
+		double flux = 0;
+		for (int i = 1; i < data.length; i++) {
+			flux += (data[i][0] - data[i - 1][0])
+					* (data[i][1] + data[i - 1][1]) * 0.5;
+		}
+		return flux;
 	}
 
 	/**
