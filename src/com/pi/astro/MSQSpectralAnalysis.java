@@ -8,10 +8,10 @@ import com.pi.astro.BlackBody.PlanckMatchResults;
 public class MSQSpectralAnalysis {
 
 	public static void main(String[] args) throws IOException {
-		double[][] data = CSVParser.getCSV(new File("star2data.csv"));
+		double[][] data = CSVParser.getCSV(new File("binary1data.csv"));
 		PlanckMatchResults results = BlackBody.matchCurve(data, 100);
-		double luminosity = MainSequence
-				.msqTempToLuminosity(results.temperature);
+		double luminosity = MainSequence.msqTempToLuminosity(
+				results.temperature, false);
 		System.out.println("Temperature: " + results.temperature);
 		System.out.println("Lambda Max (Observed): "
 				+ BlackBody.lambdaMax(data) + " m");
@@ -21,8 +21,10 @@ public class MSQSpectralAnalysis {
 		double totalFlux = BlackBody.totalFlux(results.temperature);
 		double observedFlux = totalFlux * results.scalingFactor;
 		System.out.println("Total flux: " + totalFlux + " W/m^2");
-		System.out.println("Observed flux (Calculated): " + observedFlux + " W/m^2");
-		System.out.println("Observed flux (Raw): " + BlackBody.totalFlux(data) + " W/m^2");
+		System.out.println("Observed flux (Calculated): " + observedFlux
+				+ " W/m^2");
+		System.out.println("Observed flux (Raw): " + BlackBody.totalFlux(data)
+				+ " W/m^2");
 		double computeDistance = Math.sqrt(luminosity / observedFlux / Math.PI
 				/ 4.0);
 		System.out.println("Computed distance: " + computeDistance + " m ("
