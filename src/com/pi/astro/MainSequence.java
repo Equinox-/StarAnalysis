@@ -53,6 +53,6 @@ public class MainSequence {
 			total += j * d[0];
 			weight += j;
 		}
-		return total / weight * 3.846E26;
+		return total / weight * 3.846E26; // Solar luminosities to watts
 	}
 }

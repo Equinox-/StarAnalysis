@@ -44,8 +44,7 @@ public class Plot extends JFrame {
 
 	public void paint(Graphics g) {
 		int c = 0;
-		g.clearRect(0, 0, getContentPane().getWidth(), getContentPane()
-				.getHeight());
+		g.clearRect(0, 0, getWidth(), getHeight());
 		for (double[][] data : this.points) {
 			g.setColor(colors[c++]);
 			for (int i = 1; i < data.length; i++) {

@@ -131,7 +131,8 @@ public class BlackBody {
 	 *            the number of processing iterations to perform
 	 * @return the match results
 	 */
-	public static PlanckMatchResults matchCurve(double[][] data, double temp, int steps) {
+	public static PlanckMatchResults matchCurve(double[][] data, double temp,
+			int steps) {
 		double[] res = { 0, 1 };
 		double[][] variance = new double[data.length][2];
 		double resLast = -1;
@@ -139,6 +140,9 @@ public class BlackBody {
 			res = BlackBody.evalCurve(data, temp, variance);
 			if (resLast > 0) {
 				// Maybe some adaptive thing
+			}
+			if (res[0] == 0) {
+				break;
 			}
 			temp += (res[0] * 1E8);
 			resLast = res[0];
